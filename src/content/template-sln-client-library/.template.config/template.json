@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Scott Offen",
+  "classifications": [
+    "Common",
+    "Library",
+    "Nuget",
+    "Client Library"
+  ],
+  "name": "Template9 Nuget Client Library",
+  "description": "Class library template for creating a Nuget package.",
+  "precedence": "0",
+  "identity": "Template9.Nuget.ClientLibrary",
+  "shortName": "client",
+  "tags": {
+    "language": "C#",
+    "type": "solution"
+  },
+  "sourceName": "Template9",
+  "preferNameDirectory": false,
+  "guids": [
+    "00000000-0000-0000-0000-000000000001",
+    "00000000-0000-0000-0000-000000000002",
+    "00000000-0000-0000-0000-000000000003",
+    "00000000-0000-0000-0000-000000000004"
+  ],
+  "symbols": {
+    "authors": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "<!-- Replace this with the package author(s) -->",
+      "description": "The name of the package author",
+      "replaces": "%AUTHOR%"
+    },
+    "copyrightYear": {
+      "type": "generated",
+      "generator": "now",
+      "replaces": "%YEAR%",
+      "parameters": {
+        "format": "yyyy"
+      }
+    },
+    "license": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "MIT",
+      "description": "The license expression for the package",
+      "replaces": "%LICENSE%"
+    },
+    "use-github": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": false,
+      "description": "If specified, the .github folder will be included in the project"
+    },
+    "github-org": {
+      "type": "parameter",
+      "datatype": "string",
+      "isEnabled": "use-github == true",
+      "isRequired": "use-github == true",
+      "description": "The GitHub organization name",
+      "replaces": "%GITHUB_ORG%"
+    },
+    "add-nuget": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "isEnabled": "use-github == true",
+      "description": "Includes push to Nuget.org in the GitHub workflows"
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "condition": "use-github != true",
+          "exclude": [
+            ".github/**"
+          ]
+        }
+      ]
+    }
+  ]
+}

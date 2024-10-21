@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <NoWarn>$(NoWarn);NETSDK1138;CS1591</NoWarn>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageId>Template9.Common.WebApi</PackageId>
+    <Authors>%AUTHOR%</Authors>
+    <Copyright>© %YEAR% - $([System.DateTime]::Now.ToString('yyyy')) $(Authors)</Copyright>
+    <Description>Common WebApi configurations</Description>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
+    <FileVersion>$(Version)</FileVersion>
+    <PackageVersion>$(Version)</PackageVersion>
+    <Version>0.0.1</Version>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryType>git</RepositoryType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <RepositoryUrl><!-- TODO: Replace this with the URL to the repository/project --></RepositoryUrl>
+    <PackageProjectUrl><!-- TODO: Replace this with the URL to your repository/project --></PackageProjectUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <LangVersion>latestmajor</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <LangVersion>latestmajor</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="[8.0.0, 9.0.0)" />
+    <PackageReference Include="Asp.Versioning.Mvc" Version="[8.0.0, 9.0.0)" />
+    <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="[8.0.0, 9.0.0)" />
+    <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="[6.5.1, 7.0.0)" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="[8.0.0, 9.0.0)" />
+    <PackageReference Include="Microsoft.OpenApi" Version="[1.6.14, 2.0.0)" />
+    <PackageReference Include="Template9.Common.Abstractions" Version="1.*" />
+    <PackageReference Include="Template9.Common.Exceptions" Version="1.*" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="[6.9.0, 7.0.0)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+</Project>

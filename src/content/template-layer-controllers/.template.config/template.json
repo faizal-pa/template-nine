@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Scott Offen",
+  "classifications": [
+    "Common",
+    "Solution",
+    "Layer",
+    "Controllers"
+  ],
+  "name": "Template9 Controllers Layer",
+  "description": "Template for creating a controllers layer.",
+  "precedence": "0",
+  "identity": "Template9.Layer.Controllers",
+  "shortName": "ctrl",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "Template9",
+  "preferNameDirectory": false,
+  "primaryOutputs": [
+    { "path": "Template9/Template9.csproj" },
+    { "path": "Template9.Dto/Template9.Dto.csproj" }
+  ],
+  "postActions": [
+    {
+      "actionId": "D396686C-DE0E-4DE6-906D-291CD29FC5DE",
+      "description": "Adding the project to the solution",
+      "manualInstructions": [ { "text": "Add generated projects to the solution manually." } ],
+      "continueOnError": true
+    },
+    {
+      "condition": "(!skipRestore)",
+      "description": "Restore NuGet packages required by this project.",
+      "manualInstructions": [{ "text": "Run 'dotnet restore'" }],
+      "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+      "continueOnError": true
+    }
+  ]
+}

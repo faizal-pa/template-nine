@@ -1,0 +1,199 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Scott Offen",
+  "classifications": [
+    "Common",
+    "Solution",
+    "Library",
+    "Common Libraries"
+  ],
+  "name": "Template9 Common Libraries",
+  "description": "Templates for creating a set of common libraries.",
+  "precedence": "0",
+  "identity": "Template9.Common.Libraries",
+  "shortName": "common",
+  "tags": {
+    "language": "C#",
+    "type": "solution"
+  },
+  "guids": [
+    "00000000-0000-0000-0000-000000000001",
+    "00000000-0000-0000-0000-000000000002",
+    "00000000-0000-0000-0000-000000000003",
+    "00000000-0000-0000-0000-000000000004",
+    "00000000-0000-0000-0000-000000000005"
+  ],
+  "sourceName": "Template9",
+  "preferNameDirectory": false,
+  "symbols": {
+    "authors": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "<!-- Replace this with the package author(s) -->",
+      "description": "The name of the package author",
+      "replaces": "%AUTHOR%"
+    },
+    "copyrightYear": {
+      "type": "generated",
+      "generator": "now",
+      "replaces": "%YEAR%",
+      "parameters": {
+        "format": "yyyy"
+      }
+    },
+    "use-github": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": false,
+      "description": "If specified, the .github folder will be included in the project"
+    },
+    "github-org": {
+      "type": "parameter",
+      "datatype": "string",
+      "isEnabled": "use-github == true",
+      "isRequired": "use-github == true",
+      "description": "The GitHub organization name",
+      "replaces": "%GITHUB_ORG%"
+    },
+    "lib": {
+      "type": "parameter",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "abstractions",
+          "description": "Create the common abstractions library."
+        },
+        {
+          "choice": "exceptions",
+          "description": "Create the common exceptions library."
+        },
+        {
+          "choice": "extensions",
+          "description": "Create the common extensions library."
+        },
+        {
+          "choice": "logging",
+          "description": "Create the common logging library."
+        },
+        {
+          "choice": "mapper",
+          "description": "Create the common mapper library."
+        },
+        {
+          "choice": "redis",
+          "description": "Create the common redis library."
+        },
+        {
+          "choice": "secrets",
+          "description": "Create the common secrets library."
+        },
+        {
+          "choice": "testing",
+          "description": "Create the common testing library."
+        },
+        {
+          "choice": "webapi",
+          "description": "Create the common webapi library."
+        }
+      ],
+      "isRequired": true
+    },
+    "cloud": {
+      "type": "parameter",
+      "datatype": "choice",
+      "description": "Indicates which cloud service the library is for.",
+      "isEnabled": "lib == 'secrets'",
+      "isRequired": "lib == 'secrets'",
+      "choices": [
+        {
+          "choice": "azure",
+          "description": "Create the Azure secrets library."
+        },
+        {
+          "choice": "aws",
+          "description": "Create the AWS secrets library."
+        }
+      ]
+    }
+  },
+  "sources": [
+    {
+      "source": "./abstractions",
+      "include": [
+        "**/*"
+      ],
+      "condition": "lib == 'abstractions'"
+    },
+    {
+      "source": "./exceptions",
+      "include": [
+        "**/*"
+      ],
+      "condition": "lib == 'exceptions'"
+    },
+    {
+      "source": "./extensions",
+      "include": [
+        "**/*"
+      ],
+      "condition": "lib == 'extensions'"
+    },
+    {
+      "source": "./logging",
+      "include": [
+        "**/*"
+      ],
+      "condition": "lib == 'logging'"
+    },
+    {
+      "source": "./mapper",
+      "include": [
+        "**/*"
+      ],
+      "condition": "lib == 'mapper'"
+    },
+    {
+      "source": "./redis",
+      "include": [
+        "**/*"
+      ],
+      "condition": "lib == 'redis'"
+    },
+    {
+      "source": "./secrets/azure",
+      "include": [
+        "**/*"
+      ],
+      "condition": "lib == 'secrets' && cloud == 'azure'"
+    },
+    {
+      "source": "./secrets/aws",
+      "include": [
+        "**/*"
+      ],
+      "condition": "lib == 'secrets' && cloud == 'aws'"
+    },
+    {
+      "source": "./testing",
+      "include": [
+        "**/*"
+      ],
+      "condition": "lib == 'testing'"
+    },
+    {
+      "source": "./webapi",
+      "include": [
+        "**/*"
+      ],
+      "condition": "lib == 'webapi'"
+    },
+    {
+      "source": "./.github",
+      "include": [
+        "**/*"
+      ],
+      "target": "./.github",
+      "condition": "use-github == true"
+    }
+  ]
+}
