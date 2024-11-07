@@ -13,13 +13,20 @@ namespace Template9;
 [Route("api/v{version:apiVersion}/[controller]")]
 public class SampleController : ControllerBase
 {
+    private readonly ILogger<SampleController> _logger;
+
+    public SampleController(ILogger<SampleController> logger)
+    {
+        _logger = logger;
+    }
+
     /// <summary>
     /// Gets a list of samples.
     /// </summary>
     /// <returns></returns>
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<SampleResponse>), StatusCodes.Status200OK)]
-    public ActionResult<IEnumerable<SampleResponse>> Get()
+    public async Task<ActionResult<IEnumerable<SampleResponse>>> Get(CancellationToken token)
     {
         return Ok(new[]
         {
@@ -35,7 +42,8 @@ public class SampleController : ControllerBase
     /// <returns></returns>
     [HttpGet("{id}")]
     [ProducesResponseType(typeof(SampleResponse), StatusCodes.Status200OK)]
-    public ActionResult<string> Get(int id)
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<string>> Get(int id, CancellationToken token)
     {
         return Ok(new SampleResponse { Id = id, Name = "value" + id });
     }
@@ -47,7 +55,7 @@ public class SampleController : ControllerBase
     /// <returns></returns>
     [HttpPost]
     [ProducesResponseType(typeof(SampleResponse), StatusCodes.Status201Created)]
-    public ActionResult<SampleResponse> Post(SampleRequest request)
+    public async Task<ActionResult<SampleResponse>> Post(SampleRequest request, CancellationToken token)
     {
         var response = new SampleResponse
         {
@@ -66,7 +74,8 @@ public class SampleController : ControllerBase
     /// <returns></returns>
     [HttpPut("{id}")]
     [ProducesResponseType(typeof(SampleResponse), StatusCodes.Status200OK)]
-    public ActionResult<SampleResponse> Put(int id, SampleRequest request)
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<SampleResponse>> Put(int id, SampleRequest request, CancellationToken token)
     {
         return Ok(new SampleResponse { Id = id, Name = request.Name });
     }
@@ -78,7 +87,7 @@ public class SampleController : ControllerBase
     /// <returns></returns>
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public IActionResult Delete(int id)
+    public async Task<IActionResult> Delete(int id, CancellationToken token)
     {
         return NoContent();
     }

@@ -69,13 +69,44 @@ jobs:
     - name: Test
       run: dotnet test ./src --no-build --verbosity normal --filter "Category!=Integration"
 
+  # This job will determine if a pre-release package should be published
+  check:
+    name: Check for Source Code Changes
+    needs: build
+    runs-on: ubuntu-latest
+
+    outputs:
+      has_changes: ${{ steps.changed_files.outputs.any_changed }}
+
+    # The steps below will only run once
+    steps:
+
+      # Checks out the code from the repository using a deep clone
+      # The deep close in necessary to access the full history of the repository
+      # so that the NerdBank.GitVersioning tool can determine the version number
+      - name: Checkout code (Deep Clone)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Checks for changes in the ./src directory that are not markdown files
+      # this step outpus a boolean value named any_changed that can be used in
+      # conditional steps.
+      - name: Check for source code changes
+        id: changed_files
+        uses: tj-actions/changed-files@v45
+        with:
+          files: 'src/**'
+          files_ignore: '**/*.md'
+
   # This job will publish the package to GitHub Packages
   # While this job is dependent on the build job, do not combine the jobs as
   # the build job will run multiple times
   publish:
     name: Publish PreRelease Package
     runs-on: ubuntu-latest
-    needs: build
+    needs: check
+    if: ${{ needs.check.outputs.has_changes == 'true' }}
 
     # These permissions are required to publish the package to GitHub Packages
     permissions:

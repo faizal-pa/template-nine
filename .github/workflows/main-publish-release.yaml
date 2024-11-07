@@ -24,8 +24,8 @@ on:
     branches:
     - main
     paths:
-      - '!src/**/*.md'
       - 'src/**'
+      - '!src/**/*.md'
 
 jobs:
   # This job will build and run the tests for the project
