@@ -50,7 +50,7 @@ jobs:
     # Configure NuGet to use GitHub Packages as a source
     - name: Configure NuGet for GitHub Packages
       run: |
-        dotnet nuget add source https://nuget.pkg.github.com/%GITHUB_ORG%/index.json \
+        dotnet nuget add source https://nuget.pkg.github.com/$(GitHubOrg)/index.json \
         --name GitHub \
         --username ${{ github.actor }} \
         --password ${{ secrets.GITHUB_TOKEN }} \
@@ -137,7 +137,7 @@ jobs:
     # Configure NuGet to use GitHub Packages as a source
     - name: Configure NuGet for GitHub Packages
       run: |
-        dotnet nuget add source https://nuget.pkg.github.com/%GITHUB_ORG%/index.json \
+        dotnet nuget add source https://nuget.pkg.github.com/$(GitHubOrg)/index.json \
         --name GitHub \
         --username ${{ github.actor }} \
         --password ${{ secrets.GITHUB_TOKEN }} \
@@ -154,5 +154,5 @@ jobs:
     # Publishes the package to GitHub Packages
     - name: Publish to GitHub Packages
       run: |
-        dotnet nuget push ./publish/*.nupkg --source https://nuget.pkg.github.com/%GITHUB_ORG%/index.json --api-key ${{ secrets.GITHUB_TOKEN }}
-        dotnet nuget push ./publish/*.snupkg --source https://nuget.pkg.github.com/%GITHUB_ORG%/index.json --api-key ${{ secrets.GITHUB_TOKEN }}
+        dotnet nuget push ./publish/*.nupkg --source https://nuget.pkg.github.com/$(GitHubOrg)/index.json --api-key ${{ secrets.GITHUB_TOKEN }}
+        dotnet nuget push ./publish/*.snupkg --source https://nuget.pkg.github.com/$(GitHubOrg)/index.json --api-key ${{ secrets.GITHUB_TOKEN }}

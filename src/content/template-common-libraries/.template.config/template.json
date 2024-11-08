@@ -31,29 +31,26 @@
       "datatype": "string",
       "defaultValue": "<!-- Replace this with the package author(s) -->",
       "description": "The name of the package author",
-      "replaces": "%AUTHOR%"
+      "replaces": "$(PackageAuthors)"
     },
     "copyrightYear": {
       "type": "generated",
       "generator": "now",
-      "replaces": "%YEAR%",
+      "replaces": "$(CopyrightStartYear)",
       "parameters": {
         "format": "yyyy"
       }
     },
-    "use-github": {
-      "type": "parameter",
-      "datatype": "bool",
-      "defaultValue": false,
-      "description": "If specified, the .github folder will be included in the project"
-    },
     "github-org": {
       "type": "parameter",
       "datatype": "string",
-      "isEnabled": "use-github == true",
-      "isRequired": "use-github == true",
+      "defaultValue": "no-value",
       "description": "The GitHub organization name",
-      "replaces": "%GITHUB_ORG%"
+      "replaces": "$(GitHubOrg)"
+    },
+    "use-github": {
+      "type": "computed",
+      "value": "(github-org != \"no-value\")"
     },
     "lib": {
       "type": "parameter",
@@ -119,79 +116,57 @@
   "sources": [
     {
       "source": "./abstractions",
-      "include": [
-        "**/*"
-      ],
+      "include": [ "**/*" ],
       "condition": "lib == 'abstractions'"
     },
     {
       "source": "./exceptions",
-      "include": [
-        "**/*"
-      ],
+      "include": [ "**/*" ],
       "condition": "lib == 'exceptions'"
     },
     {
       "source": "./extensions",
-      "include": [
-        "**/*"
-      ],
+      "include": [ "**/*" ],
       "condition": "lib == 'extensions'"
     },
     {
       "source": "./logging",
-      "include": [
-        "**/*"
-      ],
+      "include": [ "**/*" ],
       "condition": "lib == 'logging'"
     },
     {
       "source": "./mapper",
-      "include": [
-        "**/*"
-      ],
+      "include": [ "**/*" ],
       "condition": "lib == 'mapper'"
     },
     {
       "source": "./redis",
-      "include": [
-        "**/*"
-      ],
+      "include": [ "**/*" ],
       "condition": "lib == 'redis'"
     },
     {
       "source": "./secrets/azure",
-      "include": [
-        "**/*"
-      ],
+      "include": [ "**/*" ],
       "condition": "lib == 'secrets' && cloud == 'azure'"
     },
     {
       "source": "./secrets/aws",
-      "include": [
-        "**/*"
-      ],
+      "include": [ "**/*" ],
       "condition": "lib == 'secrets' && cloud == 'aws'"
     },
     {
       "source": "./testing",
-      "include": [
-        "**/*"
-      ],
+      "include": [ "**/*" ],
       "condition": "lib == 'testing'"
     },
     {
       "source": "./webapi",
-      "include": [
-        "**/*"
-      ],
+      "include": [ "**/*" ],
       "condition": "lib == 'webapi'"
     },
     {
       "source": "./.github",
-      "include": [
-        "**/*"
-      ],
+      "include": [ "**/*" ],
       "target": "./.github",
       "condition": "use-github == true"
     }

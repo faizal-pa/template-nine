@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <PropertyGroup>
-    <GenOpenApiSpec Condition=" '$(GenOpenApiSpec)' == '' ">true</GenOpenApiSpec>
+    <GenOpenApiSpec Condition=" '$(GenOpenApiSpec)' == '' AND $(Configuration) != 'Release' ">true</GenOpenApiSpec>
   </PropertyGroup>
 
   <Target Name="PostBuild" Condition=" '$(GenOpenApiSpec)' == 'true' " AfterTargets="PostBuildEvent">

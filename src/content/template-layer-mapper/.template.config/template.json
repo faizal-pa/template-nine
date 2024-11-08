@@ -23,6 +23,39 @@
     { "path": "Template9.Default/Template9.Default.csproj" },
     { "path": "Template9.Default.Tests/Template9.Default.Tests.csproj" }
   ],
+  "symbols": {
+    "mapper-pkg": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "The package to add with the IAutoMapperConfiguration abstractions.",
+      "defaultValue": "no-value",
+      "replaces": "$(MapperPackage)"
+    },
+    "mapper-pkg-version": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "The version of the package to add with the IAutoMapperConfiguration abstractions.",
+      "defaultValue": "1.0.*",
+      "isEnabled": "(mapper-pkg != \"no-value\")",
+      "replaces": "$(MapperPackageVersion)"
+    },
+    "use-pkg": {
+      "type": "computed",
+      "value": "(mapper-pkg != \"no-value\")"
+    }
+  },
+  "sources": [
+    {
+      "source": "./stand-alone",
+      "include": [ "**/*" ],
+      "condition": "!use-pkg"
+    },
+    {
+      "source": "./use-package",
+      "include": [ "**/*" ],
+      "condition": "use-pkg"
+    }
+  ],
   "postActions": [
     {
       "actionId": "D396686C-DE0E-4DE6-906D-291CD29FC5DE",

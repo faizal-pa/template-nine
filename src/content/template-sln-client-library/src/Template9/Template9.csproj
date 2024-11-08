@@ -7,8 +7,8 @@
     <NoWarn>$(NoWarn);NETSDK1138;CS1591</NoWarn>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageId>Template9</PackageId>
-    <Authors>%AUTHOR%</Authors>
-    <Copyright>© %YEAR% - $([System.DateTime]::Now.ToString('yyyy')) $(Authors)</Copyright>
+    <Authors>$(PackageAuthors)</Authors>
+    <Copyright>© $(CopyrightStartYear) - $([System.DateTime]::Now.ToString('yyyy')) $(Authors)</Copyright>
     <Description><!-- TODO: Replace this with a description of your package --></Description>
 <!--#if (add-nuget) -->
     <PackageTags><!-- TODO: Replace this with tags for your package --></PackageTags>
@@ -19,7 +19,7 @@
     <Version>0.0.1</Version>
     <PackageReadmeFile>README.md</PackageReadmeFile>
 <!--#if (add-nuget) -->
-    <PackageLicenseExpression>%LICENSE%</PackageLicenseExpression>
+    <PackageLicenseExpression>$(LicenseExp)</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 <!--#endif -->
     <RepositoryType>git</RepositoryType>

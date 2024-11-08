@@ -30,12 +30,12 @@
       "datatype": "string",
       "defaultValue": "<!-- Replace this with the package author(s) -->",
       "description": "The name of the package author",
-      "replaces": "%AUTHOR%"
+      "replaces": "$(PackageAuthors)"
     },
     "copyrightYear": {
       "type": "generated",
       "generator": "now",
-      "replaces": "%YEAR%",
+      "replaces": "$(CopyrightStartYear)",
       "parameters": {
         "format": "yyyy"
       }
@@ -45,27 +45,24 @@
       "datatype": "string",
       "defaultValue": "MIT",
       "description": "The license expression for the package",
-      "replaces": "%LICENSE%"
-    },
-    "use-github": {
-      "type": "parameter",
-      "datatype": "bool",
-      "defaultValue": false,
-      "description": "If specified, the .github folder will be included in the project"
+      "replaces": "$(LicenseExp)"
     },
     "github-org": {
       "type": "parameter",
       "datatype": "string",
-      "isEnabled": "use-github == true",
-      "isRequired": "use-github == true",
+      "defaultValue": "no-value",
       "description": "The GitHub organization name",
-      "replaces": "%GITHUB_ORG%"
+      "replaces": "$(GitHubOrg)"
+    },
+    "use-github": {
+      "type": "computed",
+      "value": "(github-org != \"no-value\")"
     },
     "add-nuget": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
-      "isEnabled": "use-github == true",
+      "isEnabled": "(github-org != \"no-value\")",
       "description": "Includes push to Nuget.org in the GitHub workflows"
     }
   },
@@ -73,10 +70,8 @@
     {
       "modifiers": [
         {
-          "condition": "use-github != true",
-          "exclude": [
-            ".github/**"
-          ]
+          "condition": "!use-github",
+          "exclude": [ ".github/**" ]
         }
       ]
     }

@@ -6,7 +6,9 @@ TODO: Describe the architecture and the purpose of each layer
 
 # Installation
 
-Install the templates from the command line:
+In order to install the templates, you must configure this user/organization as a [Nuget source](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-nuget-registry).
+
+Install the templates from the command line with an optional version number:
 
 ```
 dotnet new install Template9 --version [version]
@@ -39,13 +41,22 @@ dotnet new update
 |------------------------|------------------------------------------------------------------------------------------------------|
 | `--name <OUTPUT_NAME>` | The name for the created output. If no name is specified, the name of the current directory is used. |
 
+### Mapper Layer
+
+The mapping layer comes in two flavors. By default, the mapping layer will include all of the abstractions needed for `IAutoMapperConfiguration`. In instances where you want these abstractions to be provided using a [external library](), the name of the package can be supplied - along with an optional semver expression - and that will be used instead.
+
+| Option                           | Default Value | Description                                                                                        |
+|----------------------------------|:-------------:|----------------------------------------------------------------------------------------------------|
+| `--mapper-pkg <PKG_NAME>`        | N/A           | The name of the package that will provided the `IAutoMapperConfiguration` abstractions.            |
+| `--mapper-pkg-version <PKG_VER>` | 1.0.*         | The version of the above package. Must be a valid version that can be restored via a Nuget source. |
+
 # Solution Templates
 
-| Template                       | Short Name  | Description                                                               |
-|--------------------------------|-------------|---------------------------------------------------------------------------|
-| Template9 Nuget Class Library  | [pkglib]()  | Nuget package project for a class library                                 |
-| Template9 Nuget Client Library | [client]()  | Nuget package project for a client class library                          |
-| Template9 Common Libraries     | [common]()  | Templates for creating a set of common libraries.                         |
+| Template                       | Short Name | Description                                                               |
+|--------------------------------|------------|---------------------------------------------------------------------------|
+| Template9 Nuget Class Library  | pkglib     | Nuget package project for a class library                                 |
+| Template9 Nuget Client Library | client     | Nuget package project for a client class library                          |
+| Template9 Common Libraries     | common     | Templates for creating a set of common libraries.                         |
 
 ## Options
 
@@ -54,16 +65,14 @@ dotnet new update
 | `--name <OUTPUT_NAME>`     | The name for the created output. If no name is specified, the name of the current directory is used. |
 | `--authors <AUTHOR_NAME>`  | The name of the package author. If no author is specified, the csproj file will need to be edited.   |
 | `--license <LICENSE_EXPR>` | The license expression for the package. If not specified, defaults to `MIT`.                         |
-| `--use-github`             | When present, will include the `.github` directory in the output.                                    |
-| `--github-org <ORG_NAME>`  | The GitHub organization name. Required when using the `--use-github` flag.                           |
-| `-add-nuget`               | When used with the `--use-github` flag, will add workflows to push to Nuget.org                      |
+| `--github-org <ORG_NAME>`  | The GitHub organization name. When provided, the `.github` directory will be included in the output. |
+| `-add-nuget`               | When used with the `--github-org` flag, will add workflows to push to Nuget.org                      |
 
 ### Common Library Options
 
 The common libraries require an additional `--lib` flag to specify the library type using one of the following options:
 
-
-| Option       | Description                             |
+| Option Value | Description                             |
 |--------------|-----------------------------------------|
 | abstractions | Create the common abstractions library. |
 | exceptions   | Create the common exceptions library.   |
@@ -75,7 +84,12 @@ The common libraries require an additional `--lib` flag to specify the library t
 | testing      | Create the common testing library.      |
 | webapi       | Create the common webapi library.       |
 
-For the secrets option, an additional `cloud` option must be specified to indicate which cloud platform is being used.
+> [!TIP]
+> The mapper library contains the abstractions needed for a [mapper layer](#mapper-layer) that is using an external library.
+
+#### AWS Secrets Manager vs Azure KeyVault
+
+For the secrets library, an additional `cloud` option must be specified to indicate which cloud platform is being used.
 
 | Option | Platform | Description                                                                     |
 |--------|----------|---------------------------------------------------------------------------------|
