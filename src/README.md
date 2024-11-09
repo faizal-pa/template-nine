@@ -57,6 +57,7 @@ The mapping layer comes in two flavors. By default, the mapping layer will inclu
 | Template9 Nuget Class Library  | pkglib     | Nuget package project for a class library                                 |
 | Template9 Nuget Client Library | client     | Nuget package project for a client class library                          |
 | Template9 Common Libraries     | common     | Templates for creating a set of common libraries.                         |
+| Template9 Empty Repository     | repo       | Template to generate a default set of assets for an empty repository.     |
 
 ## Options
 
@@ -67,6 +68,9 @@ The mapping layer comes in two flavors. By default, the mapping layer will inclu
 | `--license <LICENSE_EXPR>` | The license expression for the package. If not specified, defaults to `MIT`.                         |
 | `--github-org <ORG_NAME>`  | The GitHub organization name. When provided, the `.github` directory will be included in the output. |
 | `-add-nuget`               | When used with the `--github-org` flag, will add workflows to push to Nuget.org                      |
+
+> [!INFORMATION]
+> Only `--name` and `--github-org` flags are valid for Template9 Empty Repository (*repo*).
 
 ### Common Library Options
 
