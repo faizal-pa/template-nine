@@ -69,7 +69,7 @@ The mapping layer comes in two flavors. By default, the mapping layer will inclu
 | `--github-org <ORG_NAME>`  | The GitHub organization name. When provided, the `.github` directory will be included in the output. |
 | `-add-nuget`               | When used with the `--github-org` flag, will add workflows to push to Nuget.org                      |
 
-> [!INFORMATION]
+> [!NOTE]
 > Only `--name` and `--github-org` flags are valid for Template9 Empty Repository (*repo*).
 
 ### Common Library Options
