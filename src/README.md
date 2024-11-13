@@ -41,6 +41,14 @@ dotnet new update
 |------------------------|------------------------------------------------------------------------------------------------------|
 | `--name <OUTPUT_NAME>` | The name for the created output. If no name is specified, the name of the current directory is used. |
 
+### Controllers Layer
+
+The controllers layer had an additional optional parameter used in naming the generated sample controller and DTOs. The parameter defaults to "Sample".
+
+| Option             | Default Value | Description                                                      |
+|--------------------|:-------------:|------------------------------------------------------------------|
+| `--sample <VALUE>` | Sample        | Used to name generated controllers and DTOs; should be singular. |
+
 ### Mapper Layer
 
 The mapping layer comes in two flavors. By default, the mapping layer will include all of the abstractions needed for `IAutoMapperConfiguration`. In instances where you want these abstractions to be provided using a [external library](), the name of the package can be supplied - along with an optional semver expression - and that will be used instead.

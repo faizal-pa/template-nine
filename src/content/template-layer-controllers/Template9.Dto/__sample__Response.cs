@@ -1,17 +1,17 @@
 namespace Template9.Dto;
 
 /// <summary>
-/// Represents a sample response.
+/// Represents a response dto.
 /// </summary>
-public class SampleResponse
+public class $(Sample)Response
 {
     /// <summary>
-    /// The unique identifier of the sample.
+    /// The unique identifier
     /// </summary>
     public int Id { get; set; }
 
     /// <summary>
-    /// The name of the sample.
+    /// The name
     /// </summary>
     public string Name { get; set; } = null!;
 }

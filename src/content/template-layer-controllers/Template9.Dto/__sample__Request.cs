@@ -3,12 +3,12 @@
 namespace Template9.Dto;
 
 /// <summary>
-/// Represents a sample request.
+/// Represents a request dto.
 /// </summary>
-public class SampleRequest
+public class $(Sample)Request
 {
     /// <summary>
-    /// The name of the sample.
+    /// The name
     /// </summary>
     [Required]
     public required string Name { get; set; }

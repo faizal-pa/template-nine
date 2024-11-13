@@ -22,6 +22,16 @@
     { "path": "Template9/Template9.csproj" },
     { "path": "Template9.Dto/Template9.Dto.csproj" }
   ],
+  "symbols": {
+    "sample": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "The partial name to include in the renamed files",
+      "defaultValue": "Sample",
+      "replaces": "$(Sample)",
+      "fileRename": "__sample__"
+    }
+  },
   "postActions": [
     {
       "actionId": "D396686C-DE0E-4DE6-906D-291CD29FC5DE",

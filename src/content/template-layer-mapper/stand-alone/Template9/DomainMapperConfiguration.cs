@@ -1,6 +1,6 @@
 using AutoMapper;
 
-namespace Template9.Common.Mapper;
+namespace Template9;
 
 public abstract class DomainMapperConfiguration : IAutoMapperConfiguration
 {
