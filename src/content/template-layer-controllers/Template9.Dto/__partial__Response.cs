@@ -3,7 +3,7 @@ namespace Template9.Dto;
 /// <summary>
 /// Represents a response dto.
 /// </summary>
-public class $(Sample)Response
+public class $(PartialName)Response
 {
     /// <summary>
     /// The unique identifier

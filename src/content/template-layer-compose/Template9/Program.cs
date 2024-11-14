@@ -15,7 +15,7 @@ builder.Configuration.AddJsonFile("appsettings.local.json", optional: true);
 
 // 05. Register Services (Managers, Mappers, Engines and Infrastructure, etc.)
 
-// 06. Register Controllers
+builder.Services.AddControllers();
 
 // 07. Configure Options
 

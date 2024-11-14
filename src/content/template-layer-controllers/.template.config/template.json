@@ -23,13 +23,13 @@
     { "path": "Template9.Dto/Template9.Dto.csproj" }
   ],
   "symbols": {
-    "sample": {
+    "replace": {
       "type": "parameter",
       "datatype": "string",
       "description": "The partial name to include in the renamed files",
       "defaultValue": "Sample",
-      "replaces": "$(Sample)",
-      "fileRename": "__sample__"
+      "replaces": "$(PartialName)",
+      "fileRename": "__partial__)"
     }
   },
   "postActions": [

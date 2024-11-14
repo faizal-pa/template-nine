@@ -5,7 +5,7 @@ namespace Template9.Dto;
 /// <summary>
 /// Represents a request dto.
 /// </summary>
-public class $(Sample)Request
+public class $(PartialName)Request
 {
     /// <summary>
     /// The name
