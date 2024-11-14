@@ -45,9 +45,9 @@ dotnet new update
 
 The controllers layer had an additional optional parameter used in naming the generated sample controller and DTOs. The parameter defaults to "Sample".
 
-| Option             | Default Value | Description                                                      |
-|--------------------|:-------------:|------------------------------------------------------------------|
-| `--sample <VALUE>` | Sample        | Used to name generated controllers and DTOs; should be singular. |
+| Option              | Default Value | Description                                                      |
+|---------------------|:-------------:|------------------------------------------------------------------|
+| `--partial <VALUE>` | Sample        | Used to name generated controllers and DTOs; should be singular. |
 
 ### Mapper Layer
 
