@@ -44,7 +44,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
 
-    # The steps below will run in order for each of strageies defined in the matrix
+    # The steps below will run in order for each of strategies defined in the matrix
     steps:
 
     # Installs the most recent versions of the .NET SDKs

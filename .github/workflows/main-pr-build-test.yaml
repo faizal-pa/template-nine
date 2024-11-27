@@ -26,7 +26,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
 
-    # The steps below will run in order for each of strageies defined in the matrix
+    # The steps below will run in order for each of strategies defined in the matrix
     steps:
 
     # Installs the most recent versions of the .NET SDKs
@@ -90,7 +90,7 @@ jobs:
           fetch-depth: 0
 
       # Checks for changes in the ./src directory that are not markdown files
-      # this step outpus a boolean value named any_changed that can be used in
+      # this step outputs a boolean value named any_changed that can be used in
       # conditional steps.
       - name: Check for source code changes
         id: changed_files
