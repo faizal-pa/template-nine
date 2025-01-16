@@ -13,7 +13,7 @@ public static class CompositionExtensions
     /// <param name="services"></param>
     /// <param name="configuration"></param>
     /// <returns></returns>
-    public static IServiceCollection RegisterEngines(IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection RegisterEngines(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddSingleton<IEngine, Engine>();
 
